@@ -4,6 +4,7 @@ struct HeaderScrollViewTitle: View {
     let title: String
     let height: CGFloat
     let largeTitle: Double
+    let button: AnyView?
 
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
@@ -25,6 +26,7 @@ struct HeaderScrollViewTitle: View {
                 HStack {
                     BackButton(color: .primary)
                     Spacer()
+                    self.button
                 }
                 HStack {
                     Text(title)

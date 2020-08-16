@@ -6,6 +6,8 @@ public struct FancyScrollView: View {
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let header: AnyView?
+    let button: AnyView?
+    let buttonTitle: AnyView?
     let content: AnyView
 
     public var body: some View {
@@ -16,6 +18,8 @@ public struct FancyScrollView: View {
                                  scrollUpBehavior: scrollUpHeaderBehavior,
                                  scrollDownBehavior: scrollDownHeaderBehavior,
                                  header: header,
+                                 button: button,
+                                 buttonTitle: buttonTitle,
                                  content: content)
             )
         } else {
@@ -44,18 +48,22 @@ public struct FancyScrollView: View {
 
 extension FancyScrollView {
 
-    public init<A: View, B: View>(title: String = "",
+    public init<A: View, B: View, C: View, D: View>(title: String = "",
                                   headerHeight: CGFloat = 300,
                                   scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
-                                  content: () -> B) {
+                                  button: () -> B?,
+                                  buttonTitle: () -> C?,
+                                  content: () -> D) {
 
         self.init(title: title,
                   headerHeight: headerHeight,
                   scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   header: AnyView(header()),
+                  button: AnyView(button()),
+                  buttonTitle: AnyView(buttonTitle()),
                   content: AnyView(content()))
     }
 
@@ -70,6 +78,8 @@ extension FancyScrollView {
                      scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                      header: nil,
+                     button: nil,
+                     buttonTitle: nil,
                      content: AnyView(content()))
        }
 

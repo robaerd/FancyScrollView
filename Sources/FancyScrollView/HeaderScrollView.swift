@@ -11,6 +11,8 @@ struct HeaderScrollView: View {
     let scrollUpBehavior: ScrollUpHeaderBehavior
     let scrollDownBehavior: ScrollDownHeaderBehavior
     let header: AnyView
+    let button: AnyView?
+    let buttonTitle: AnyView?
     let content: AnyView
 
     var body: some View {
@@ -41,13 +43,14 @@ struct HeaderScrollView: View {
                                     geometry.largeTitleWeight == 1 ? HStack {
                                         BackButton(color: .white)
                                         Spacer()
+                                        self.button
                                     }.frame(width: geometry.width, height: navigationBarHeight) : nil
 
                                     Spacer()
 
                                     HeaderScrollViewTitle(title: self.title,
                                                           height: navigationBarHeight,
-                                                          largeTitle: geometry.largeTitleWeight).layoutPriority(1000)
+                                                          largeTitle: geometry.largeTitleWeight, button: self.buttonTitle).layoutPriority(1000)
                                 }
                                 .padding(.top, globalGeometry.safeAreaInsets.top)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))
