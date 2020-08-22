@@ -61,11 +61,10 @@ struct HeaderScrollView: View {
                     .frame(width: globalGeometry.size.width, height: self.headerHeight)
                     .zIndex(1000)
                     .offset(y: -self.headerHeight)
+                    .padding(.bottom, -self.headerHeight)
 
                     self.content
                         .background(Color.background(colorScheme: self.colorScheme))
-                        .offset(y: -self.headerHeight)
-                        .padding(.bottom, -self.headerHeight)
                 }
             }
             .edgesIgnoringSafeArea(.top)
