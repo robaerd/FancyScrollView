@@ -2,10 +2,11 @@ import SwiftUI
 
 struct HeaderScrollViewTitle: View {
     let title: String
+    let headerTitleColor: Binding<Color>?
     let height: CGFloat
     let largeTitle: Double
     let button: AnyView?
-
+    
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
         let tinyTitleOpacity = 1 - min(largeTitle, 0.5) * 2
@@ -16,12 +17,14 @@ struct HeaderScrollViewTitle: View {
                     .foregroundColor(.white)
                     .fontWeight(.black)
                     .padding(.horizontal, 16)
-
+                    .offset(y: -4)
+                
                 Spacer()
             }
-            .padding(.bottom, 8)
+            .padding(.top, 8)
+            .background(LinearGradient(gradient: Gradient(colors: [Color.clear, Color(white: 0.0, opacity: 0.3)]), startPoint: .top, endPoint: .bottom))
             .opacity(sqrt(largeTitleOpacity))
-
+            
             ZStack {
                 HStack {
                     BackButton(color: .primary)

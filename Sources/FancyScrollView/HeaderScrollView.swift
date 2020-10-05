@@ -1,6 +1,6 @@
 import SwiftUI
 
-private let navigationBarHeight: CGFloat = 44
+private let navigationBarHeight: CGFloat = 46
 
 struct HeaderScrollView: View {
     @Environment(\.colorScheme)
@@ -11,6 +11,7 @@ struct HeaderScrollView: View {
     let scrollUpBehavior: ScrollUpHeaderBehavior
     let scrollDownBehavior: ScrollDownHeaderBehavior
     let header: AnyView
+    let headerAccentColor: Binding<Color>?
     let button: AnyView?
     let buttonTitle: AnyView?
     let content: AnyView
@@ -41,7 +42,7 @@ struct HeaderScrollView: View {
 
                                 VStack {
                                     geometry.largeTitleWeight == 1 ? HStack {
-                                        BackButton(color: .white)
+                                        BackButton(color: self.headerAccentColor?.wrappedValue ?? Color.white)
                                         Spacer()
                                         self.button
                                     }.frame(width: geometry.width, height: navigationBarHeight) : nil
@@ -49,6 +50,7 @@ struct HeaderScrollView: View {
                                     Spacer()
 
                                     HeaderScrollViewTitle(title: self.title,
+                                                          headerTitleColor: self.headerAccentColor,
                                                           height: navigationBarHeight,
                                                           largeTitle: geometry.largeTitleWeight, button: self.buttonTitle).layoutPriority(1000)
                                 }

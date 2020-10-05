@@ -6,6 +6,7 @@ public struct FancyScrollView: View {
     let scrollUpHeaderBehavior: ScrollUpHeaderBehavior
     let scrollDownHeaderBehavior: ScrollDownHeaderBehavior
     let header: AnyView?
+    let headerAccentColor: Binding<Color>?
     let button: AnyView?
     let buttonTitle: AnyView?
     let content: AnyView
@@ -18,6 +19,7 @@ public struct FancyScrollView: View {
                                  scrollUpBehavior: scrollUpHeaderBehavior,
                                  scrollDownBehavior: scrollDownHeaderBehavior,
                                  header: header,
+                                 headerAccentColor: headerAccentColor,
                                  button: button,
                                  buttonTitle: buttonTitle,
                                  content: content)
@@ -53,6 +55,7 @@ extension FancyScrollView {
                                   scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
+                                  headerAccentColor: Binding<Color>?,
                                   button: () -> B?,
                                   buttonTitle: () -> C?,
                                   content: () -> D) {
@@ -62,6 +65,7 @@ extension FancyScrollView {
                   scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   header: AnyView(header()),
+                  headerAccentColor: headerAccentColor,
                   button: AnyView(button()),
                   buttonTitle: AnyView(buttonTitle()),
                   content: AnyView(content()))
@@ -78,6 +82,7 @@ extension FancyScrollView {
                      scrollUpHeaderBehavior: scrollUpHeaderBehavior,
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                      header: nil,
+                     headerAccentColor: nil,
                      button: nil,
                      buttonTitle: nil,
                      content: AnyView(content()))
